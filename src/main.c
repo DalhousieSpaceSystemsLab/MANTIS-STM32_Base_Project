@@ -91,7 +91,7 @@ int main ( void ) {
     SomethingSimple(2, 7);
     xTaskCreate( LedBlinky_Task,						/* The function that implements the task. */
                  "LedBlinky", 							/* The text name assigned to the task - for debug only as it is not used by the kernel. */
-                 configMINIMAL_STACK_SIZE, 				/* The size of the stack to allocate to the task. */
+                 configMINIMAL_STACK_SIZE + 1024, 				/* The size of the stack to allocate to the task. */
                  NULL, 									/* The parameter passed to the task - just to check the functionality. */
                  3, 										/* The priority assigned to the task. */
                  NULL );									/* The task handle is not required, so NULL is passed. */
