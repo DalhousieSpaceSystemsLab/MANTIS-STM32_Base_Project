@@ -57,6 +57,17 @@ $ ./autobuild.sh debug
 $ ./autobuild.sh release
 ```
 
+##### Controlling for semihosting
+ARM allows developers to [extend the embedded board's C library with the host computer](https://interrupt.memfault.com/blog/arm-semihosting) during debugging in a process known as 'semihosting'.
+
+This can be enabled when using the autobuild script by defining the `SEMIHOSTING` environment variable when run:
+
+```
+$ SEMIHOSTING=1 ./autobuild.sh
+```
+
+This will force-enable the `-DSEMIHOSTING=1` flag to be passed to CMake when configuring.
+
 ### Flashing
 To flash the built project to the STM32 board, the `autoflash.sh` script makes this possible in a single step.
 
