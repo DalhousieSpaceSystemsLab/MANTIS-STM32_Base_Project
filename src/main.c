@@ -77,7 +77,7 @@ int main ( void ) {
     initialise_monitor_handles();
     setbuf(stdout, NULL);
     //~ setvbuf(stdout, NULL, _IONBF, 0);
-    INFO("Main program start");
+    INFO("Semihosting enabled, proceeding with main()...");
 #endif
     HAL_Init();
     SystemClock_Config();
