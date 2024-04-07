@@ -337,6 +337,11 @@ if(TARGET_GROUP STREQUAL production)
     # @Target: flash
     # @Brief: flash the release/debug elf using gdb
     ######################################################################
+    if(${SEMIHOSTING})
+            set(GDB_SEMIHOSTING "enable")
+    else()
+            set(GDB_SEMIHOSTING "disable")
+    endif()
     add_custom_target(flash DEPENDS ${PROJECT_NAME}.elf)
     add_custom_command(TARGET flash
         #COMMAND bash "-c" "pgrep -x \"openocd\" || (echo \"Please start openocd\" && exit -1)"
@@ -345,7 +350,7 @@ if(TARGET_GROUP STREQUAL production)
         -ex "target extended :3333"
         -ex "dashboard -output $(GDB_TTY)"
         -ex "load ${PROJECT_NAME}.elf"
-        -ex "monitor arm semihosting disable"
+        -ex "monitor arm semihosting ${GDB_SEMIHOSTING}"
         )
 
     ######################################################################
