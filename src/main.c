@@ -64,6 +64,9 @@ static GPIO_InitTypeDef  GPIO_InitStruct;
 */
 void LedBlinky_Task(void *pvParameters) {
     while (1) {
+#if SEMIHOSTING
+            INFO("Toggling LED...");
+#endif
         HAL_GPIO_TogglePin(LED1_PORT, LED1_PIN);
         vTaskDelay(1000/portTICK_PERIOD_MS);
     }
