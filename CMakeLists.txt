@@ -158,10 +158,10 @@ if(CMAKE_CROSSCOMPILING STREQUAL "1")
     message(STATUS "[INFO] Startup file used is ${STARTUP_FILE}")
 
     # Control ARM Semihosting support
-    #if(NOT SEMIHOSTING)
-    #    set(SEMIHOSTING 1)
-    #    message(WARNING "[WARN] Semihosting support not specified: Enabling by default")
-    #endif()
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT DEFINED SEMIHOSTING)
+        set(SEMIHOSTING 1)
+        message(WARNING "[WARN] Semihosting support not specified in 'Debug' build: Enabling")
+    endif()
 
     #-------------------
     # General Flags for cross
