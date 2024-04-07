@@ -23,9 +23,19 @@ $ ./bootstrap.sh
 This will primarily install [Nix](https://nix.dev/) on your machine, a prerequisite for the MANTIS DevEnv.
 
 ## Entering the DevEnv
-Once Nix is installed, the MANTIS DevEnv must be entered by running `nix-shell -v` in the root of the repo. 
+Once Nix is installed, the MANTIS DevEnv must be entered by running 
+
+```
+$ ./devenv.sh
+```
+
+in the root of the repo.
+
+The same can be done manually by running `nix-shell -v` in the root of the repo. 
 
 _This step is mandatory to ensure all required build dependencies and tooling are available_.
+
+_NOTE_: If you have not restarted your shell after installing Nix, this may explain why this step is not working.
 
 ## Building, Flashing and Debugging
 [![asciicast](https://asciinema.org/a/YH4V1O19sdZQZ0O16xgigFbwG.svg)](https://asciinema.org/a/YH4V1O19sdZQZ0O16xgigFbwG)
