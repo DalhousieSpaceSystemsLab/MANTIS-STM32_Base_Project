@@ -6,9 +6,16 @@ BUILD_DEBUG() {
         # Create the build dir
         mkdir -p ${BUILD_DIR_DEBUG}
 
-        # Setup CMake
-        cmake . -B ${BUILD_DIR_DEBUG} -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=cross.cmake -DTARGET_GROUP=production -DSEMIHOSTING=0
-
+        # Check whether semihosting was specified
+        if [[ -n $SEMIHOSTING ]]
+        then
+                # Setup CMake
+                cmake . -B ${BUILD_DIR_DEBUG} -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=cross.cmake -DTARGET_GROUP=production -DSEMIHOSTING=${SEMIHOSTING}
+        else
+                # Setup CMake
+                cmake . -B ${BUILD_DIR_DEBUG} -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=cross.cmake -DTARGET_GROUP=production
+        fi
+        
         # Build main.elf
         make -C ${BUILD_DIR_DEBUG} main.elf
 }
