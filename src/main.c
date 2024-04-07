@@ -72,6 +72,15 @@ void LedBlinky_Task(void *pvParameters) {
     }
 }
 
+void New_Task(void *pvParameters) {
+        for(;;) {
+#if SEMIHOSTING
+                INFO("Delaying another sec...");
+#endif
+                vTaskDelay(1000/portTICK_PERIOD_MS);
+        }
+}
+
 int main ( void ) {
 #if SEMIHOSTING
     initialise_monitor_handles();
@@ -95,7 +104,16 @@ int main ( void ) {
                  NULL, 									/* The parameter passed to the task - just to check the functionality. */
                  3, 										/* The priority assigned to the task. */
                  NULL );									/* The task handle is not required, so NULL is passed. */
+    xTaskCreate(New_Task,
+                    "New Task",
+                    configMINIMAL_STACK_SIZE + 1024,
+                    NULL,
+                    3,
+                    NULL
+                );
+
     vTaskStartScheduler();
+
     while (1) {
     }
     return 0;
