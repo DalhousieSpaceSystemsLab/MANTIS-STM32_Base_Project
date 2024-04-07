@@ -14,14 +14,11 @@ then
         read -p "Have you started an OpenOCD instance? (Y/n): " yn
 
         case $yn in 
-                [Yy]* ) echo "OK. Proceeding...";
-                        ;;
                 [Nn]* ) echo "You'll need to start en OpenOCD instance before you can debug.";
                         echo "Hint: You can use the 'autoocd.sh' script to do that in another shell ;-)";
                         exit;
                         ;;
-                * )     echo "Please enter 'Y/n'"; 
-                        exit;
+                * ) echo "OK. Proceeding...";
                         ;;
         esac
 
